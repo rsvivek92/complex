@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t rsvivek92/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t vrankasurender/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true rsvivek92/react-test npm run test -- --coverage
+  - docker run -e CI=true vrankasurender/react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t rsvivek92/multi-client ./client
-  - docker build -t rsvivek92/multi-server ./server
-  - docker build -t rsvivek92/multi-nginx ./nginx
-  - docker build -t rsvivek92/multi-worker ./worker
+  - docker build -t vrankasurender/multi-client ./client
+  - docker build -t vrankasurender/multi-server ./server
+  - docker build -t vrankasurender/multi-nginx ./nginx
+  - docker build -t vrankasurender/multi-worker ./worker
   # Push images to Docker Hub
     # Login to Docker Hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push rsvivek92/multi-client
-  - docker push rsvivek92/multi-server
-  - docker push rsvivek92/multi-nginx
-  - docker push rsvivek92/multi-worker
+  - docker push vrankasurender/multi-client
+  - docker push vrankasurender/multi-server
+  - docker push vrankasurender/multi-nginx
+  - docker push vrankasurender/multi-worker
