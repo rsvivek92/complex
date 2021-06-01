@@ -22,3 +22,15 @@ after_success:
   - docker push vrankasurender/multi-server
   - docker push vrankasurender/multi-nginx
   - docker push vrankasurender/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-south-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env-1'
+  bucket_name: 'elasticbeanstalk-ap-south-1-649975205325'
+  bucket_path: 'multi-docker'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
